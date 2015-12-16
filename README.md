@@ -110,8 +110,10 @@ Enable start ipa on reboot
 
 
 On IPA server if you get WARNING: Your system is running out of entropy, you may experience long delays
-⧸⧸
-https://www.digitalocean.com/community/tutorials/how-to-setup-additional-entropy-for-cloud-servers-using-haveged⧸⧸Run:⧸⧸
+
+https://www.digitalocean.com/community/tutorials/how-to-setup-additional-entropy-for-cloud-servers-using-haveged
+
+Run:
 
 Installing haveged on RHEL/CentOS/Fedora
 To install haveged on RHEL/CentOS (skip this step for Fedora), you first need to add the EPEL repository by following the instructions on the official site.
