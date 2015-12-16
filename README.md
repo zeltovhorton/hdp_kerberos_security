@@ -86,6 +86,19 @@ http://www.unixmen.com/configure-freeipa-server-centos-7/
 
 https://c7003.ambari.apache.org/ipa/ui/#/e/realmdomains/details
 
+we will install Free IPA server. But there is a client server installation also. We will see that part on later posts. It’s recommended to use RHEL/CentOS >= 6.x or Fedora >= 14. Simply perform a yum install.
+
+    (rhel/centos) # yum install ipa-server
+    
+    ipa-server-install 
+
+    **Do you want to configure integrated DNS (BIND)? [no]: no**
+    
+    Enter the fully qualified domain name of the computer
+    on which you're setting up server software. Using the form
+    <hostname>.<domainname>
+    Example: master.example.com.
+
 After login, we need to Change the default shell for all users to /bin/bash. This is done by choosing IPA Server ->Configuration. Once modified, click Update.
 
 /bin/bash
@@ -95,11 +108,25 @@ Enable start ipa on reboot
     chkconfig ipa on
 
 
+On IPA server if you get WARNING: Your system is running out of entropy, you may experience long delays
+Run:
+
+Installing haveged on RHEL/CentOS/Fedora
+To install haveged on RHEL/CentOS (skip this step for Fedora), you first need to add the EPEL repository by following the instructions on the official site.
+
+Once you've installed and enabled the EPEL repo (on RHEL/CentOS), you can install haveged by running the following command:
+
+     yum install haveged
+
+Fedora users can run the above yum install command with no repository changes. The default options are usually fine, so just make sure it's configured to start at boot:
+
+    chkconfig haveged on
+
 RUN the tutorial to import users:
 
 https://github.com/abajwa-hw/security-workshops/blob/master/Setup-LDAP-IPA.md
 
-ON IPA Server + HDP nodes:
+##ON IPA Server + HDP nodes:
 
 Setup time to be updated on regular basis to avoid kerberos errors
 
@@ -176,6 +203,9 @@ curl -u admin:$PASSWORD -i -H 'X-Requested-By: ambari' -X GET http://$AMBARI_HOS
 curl -u admin:admin -i -H 'X-Requested-By: ambari' -X DELETE http://c7001.ambari.apache.org:8080/api/v1/clusters/$CLUSTER/services/FREEIPA
 
 > Written with [StackEdit](https://stackedit.io/).
+
+
+
 
 
 
